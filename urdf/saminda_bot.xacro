@@ -31,49 +31,48 @@
             <mass value="5.0"/>
             <origin xyz="0.0 0 0" rpy=" 0 0 0"/>
             <inertia
-                    ixx="0.147116667" ixy="0" ixz="0"
-                    iyy="0.334951167" iyz="0"
-                    izz="0.3978345"
+                    ixx="0.1" ixy="0" ixz="0"
+                    iyy="0.1" iyz="0"
+                    izz="0.1"
             />
         </inertial>
 
         <collision name='collision'>
             <origin xyz="0 0 0" rpy=" 0 0 0"/>
             <geometry>
-                <box size="0.5 0.3 0.05"/>
+                <box size="0.4 0.2 0.05"/>
             </geometry>
         </collision>
 
         <visual name='visual'>
             <origin xyz="0 0 0" rpy=" 0 0 0"/>
             <geometry>
-                <box size="0.5 0.3 0.05"/>
+                <box size="0.4 0.2 0.05"/>
             </geometry>
             <material name="blue"/>
         </visual>
     </link>
 
     <link name='right_front_wheel'>
-        <pose>0.25 -0.18 0 1.5707 0 0</pose>
         <inertial>
             <mass value="0.2"/>
-            <!-- <origin xyz="0.0 0 0" rpy="0 1.5707 1.5707"/> -->
+             <origin xyz="0.0 0 0" rpy="1.5707 0 0"/>
             <inertia
-                    ixx="0.005240625" ixy="0" ixz="0"
-                    iyy="0.005240625" iyz="0"
-                    izz="0.009075"
+                    ixx="0.005" ixy="0" ixz="0"
+                    iyy="0.005" iyz="0"
+                    izz="0.005"
             />
         </inertial>
 
         <collision name='collision'>
-            <!-- <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>  -->
+             <origin xyz="0 0 0" rpy="1.5707 0 0"/>
             <geometry>
                 <cylinder length="0.0375" radius="0.055"/>
             </geometry>
         </collision>
 
         <visual name='visual'>
-            <!-- <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/> -->
+             <origin xyz="0 0 0" rpy="1.5707 0 0"/>
             <geometry>
                 <cylinder length="0.0375" radius="0.055"/>
             </geometry>
@@ -83,26 +82,25 @@
 
 
     <link name='left_front_wheel'>
-        <pose>0.25 0.18 0 1.5707 0 0</pose>
         <inertial>
             <mass value="0.2"/>
-            <!-- <origin xyz="0.0 0 0" rpy="0 1.5707 1.5707"/> -->
+             <origin xyz="0.0 0 0" rpy="1.5707 0 0"/>
             <inertia
-                    ixx="0.005240625" ixy="0" ixz="0"
-                    iyy="0.005240625" iyz="0"
-                    izz="0.009075"
+                    ixx="0.005" ixy="0" ixz="0"
+                    iyy="0.005" iyz="0"
+                    izz="0.005"
             />
         </inertial>
 
         <collision name='collision'>
-            <!-- <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>  -->
+             <origin xyz="0 0 0" rpy="1.5707 0 0"/>
             <geometry>
                 <cylinder length="0.0375" radius="0.055"/>
             </geometry>
         </collision>
 
         <visual name='visual'>
-            <!-- <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/> -->
+             <origin xyz="0 0 0" rpy="1.5707 0 0"/>
             <geometry>
                 <cylinder length="0.0375" radius="0.055"/>
             </geometry>
@@ -112,26 +110,25 @@
 
 
     <link name='right_rear_wheel'>
-        <pose>-0.25 -0.18 0 1.5707 0 0</pose>
         <inertial>
             <mass value="0.2"/>
-            <!-- <origin xyz="0.0 0 0" rpy="0 1.5707 1.5707"/> -->
+             <origin xyz="0.0 0 0" rpy="1.5707 0 0"/>
             <inertia
-                    ixx="0.005240625" ixy="0" ixz="0"
-                    iyy="0.005240625" iyz="0"
-                    izz="0.009075"
+                    ixx="0.005" ixy="0" ixz="0"
+                    iyy="0.005" iyz="0"
+                    izz="0.005"
             />
         </inertial>
 
         <collision name='collision'>
-            <!-- <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>  -->
+             <origin xyz="0 0 0" rpy="1.5707 0 0"/>
             <geometry>
                 <cylinder length="0.0375" radius="0.055"/>
             </geometry>
         </collision>
 
         <visual name='visual'>
-            <!-- <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/> -->
+             <origin xyz="0 0 0" rpy="1.5707 0 0"/>
             <geometry>
                 <cylinder length="0.0375" radius="0.055"/>
             </geometry>
@@ -140,26 +137,25 @@
     </link>
 
     <link name='left_rear_wheel'>
-        <pose>-0.25 0.18 0 1.5707 0 0</pose>
         <inertial>
             <mass value="0.2"/>
-            <!-- <origin xyz="0.0 0 0" rpy="0 1.5707 1.5707"/> -->
+             <origin xyz="0.0 0 0" rpy="1.5707 0 0"/>
             <inertia
-                    ixx="0.005240625" ixy="0" ixz="0"
-                    iyy="0.005240625" iyz="0"
-                    izz="0.009075"
+                    ixx="0.005" ixy="0" ixz="0"
+                    iyy="0.005" iyz="0"
+                    izz="0.005"
             />
         </inertial>
 
         <collision name='collision'>
-            <!-- <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/>  -->
+             <origin xyz="0 0 0" rpy="1.5707 0 0"/>
             <geometry>
                 <cylinder length="0.0375" radius="0.055"/>
             </geometry>
         </collision>
 
         <visual name='visual'>
-            <!-- <origin xyz="0 0 0" rpy="0 1.5707 1.5707"/> -->
+             <origin xyz="0 0 0" rpy="1.5707 0 0"/>
             <geometry>
                 <cylinder length="0.0375" radius="0.055"/>
             </geometry>
@@ -222,8 +218,8 @@
         </visual>
     </link>
 
-    <joint type="revolute" name="right_front">
-        <pose>0 0 0 0 0 0</pose>
+    <joint type="continuous" name="right_front">
+        <origin xyz="0.15 -0.13 0" rpy="0 0 0"/>
         <child link="right_front_wheel"/>
         <parent link="chassis"/>
         <axis xyz="0 1 0" rpy="0 0 0" use_parent_model_frame="true"/>
@@ -231,8 +227,8 @@
         <dynamics damping="1.0" friction="1.0"/>
     </joint>
 
-    <joint type="revolute" name="right_rear">
-        <pose>0 0 0 0 0 0</pose>
+    <joint type="continuous" name="right_rear">
+        <origin xyz="-0.15 -0.13 0" rpy="0 0 0"/>
         <child link="right_rear_wheel"/>
         <parent link="chassis"/>
         <axis xyz="0 1 0" rpy="0 0 0" use_parent_model_frame="true"/>
@@ -240,8 +236,8 @@
         <dynamics damping="1.0" friction="1.0"/>
     </joint>
 
-    <joint type="revolute" name="left_front">
-        <pose>0 0 0 0 0 0</pose>
+    <joint type="continuous" name="left_front">
+        <origin xyz="0.15 0.13 0" rpy="0 0 0"/>
         <child link="left_front_wheel"/>
         <parent link="chassis"/>
         <axis xyz="0 1 0" rpy="0 0 0" use_parent_model_frame="true"/>
@@ -249,8 +245,8 @@
         <dynamics damping="1.0" friction="1.0"/>
     </joint>
 
-    <joint type="revolute" name="left_rear">
-        <pose>0 0 0 0 0 0</pose>
+    <joint type="continuous" name="left_rear">
+        <origin xyz="-0.15 0.13 0" rpy="0 0 0"/>
         <child link="left_rear_wheel"/>
         <parent link="chassis"/>
         <axis xyz="0 1 0" rpy="0 0 0" use_parent_model_frame="true"/>
@@ -259,13 +255,13 @@
     </joint>
 
     <joint type="fixed" name="camera_joint">
-        <origin xyz="0.25 0 0" rpy="0 0 0"/>
+        <origin xyz="0.2 0 0" rpy="0 0 0"/>
         <child link="camera"/>
         <parent link="chassis"/>
     </joint>
 
     <joint type="fixed" name="hokuyo_joint">
-        <origin xyz="0.15 0 0.1" rpy="0 0 0"/>
+        <origin xyz="0.18 0 0.05" rpy="0 0 0"/>
         <child link="hokuyo"/>
         <parent link="chassis"/>
     </joint>
