@@ -9,7 +9,7 @@
             <rightFrontJoint>right_front</rightFrontJoint>
             <leftRearJoint>left_rear</leftRearJoint>
             <rightRearJoint>right_rear</rightRearJoint>
-            <wheelSeparation>0.36</wheelSeparation>
+            <wheelSeparation>0.26</wheelSeparation>
             <wheelDiameter>0.11</wheelDiameter>
             <robotBaseFrame>robot_footprint</robotBaseFrame>
             <torque>200</torque>
@@ -90,6 +90,31 @@
             </plugin>
         </sensor>
     </gazebo>
+
+    <gazebo reference="chassis">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+    <gazebo reference="right_front_wheel">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="left_front_wheel">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="right_rear_wheel">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="left_rear_wheel">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
+    <gazebo reference="camera">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
 
 
 </robot>
