@@ -106,12 +106,45 @@ In global localization, the robot is placed within a known environment and local
 The belief of the robot at time $t$ is represented by $bel(x_t)$. The measurement model and the motion model is given by $p(z_t | x_t, m)$, and $p(x_t | u_t, x_{t-1}, m)$ respectively. $u_t$ provides the control command to move the robot from time $t$-$1$ to t, while $z_t$ is the measurement, and $m$ is the static map of the environment. Kalman filter and Monte Carlo localization are two specific instances of the realization of the Alg. \ref{alg:markov_localization}, and further discussed herewith.   
 
 \subsection{Kalman Filter Localization}
+\label{sub:kfl}
 
-The Kalman filter (KF) is a specific instance of Alg. \ref{alg:markov_localization}, the belief, measurement, and motion models are represented by the first (mean) and second (covariance) moments.  The prior assumptions limit the motion and measurement models to be linear, and the belief can only be represented by unimodal distribution such as a Gaussian. 
+The Kalman filter (KF) localization is a specific instance of Alg. \ref{alg:markov_localization}, the belief, measurement, and motion models are represented by the first (mean) and second (covariance) moments.  These assumptions limit the motion and measurement models to be linear, and the belief can only be represented by unimodal distribution such as a Gaussian. 
 
-The practical systems are inherently non-linear, and the two common filters used in practice are the Extended Kalman filter (EKF), and the Unscented Kalman filter (UKF). The EKF uses Taylor seriese expansion to linearize the non-linear model equations, while UKF uses sigma points for the transformation (refer to \cite{Thrun:2005:PR:1121596}, chapter 7 for comprehensive description of the filters). While the both algorithms addresses the limitation of the KF, the implementation uses considerable computation resources.   
+The practical systems are inherently non-linear, and the two common filters used in practice are the Extended Kalman filter (EKF), and the Unscented Kalman filter (UKF) localization. The EKF uses Taylor seriese expansion to linearize the non-linear model equations, while UKF uses sigma points for the transformation.  EKF and UKF localization represent with unimodal Gaussian and it is a good representation in uncertainty  for tracking problems, but generally not suitable for global localization. While  both algorithms addresses the limitation of the KF, the implementations use considerable computation resources (please refer to \cite{Thrun:2005:PR:1121596}, chapter 7, for comprehensive description of the filters).   
 
 \subsection{Monte Carlo Location}
+\label{sub:mcl}
+
+Monte Carlo Localization (MCL) represents the belief $bel(x_t)$ of the robot pose by particles, which is a popular algorithm used in global and kidnapped robot localization.  MCL is computationally efficient than EKF and UKF, and it is not subjected to assumptions outlined in Sec. \ref{sub:kfl}. The basic steps of the MCL algorithm are:   \begin{enumerate*} \item the initial global uncertainty is achieved via a set of pose particles sampled uniform randomly over the entire pose space, \item the motion model moves the particles to the new locations, \item the measurement model assigns important factors to each particle based on the observations, \item the resampling setp samples particles relative to the importance weighs, and obtain the new belief, and set the new particles to uniform importance weights.  \end{enumerate*}
+
+This project uses Adaptive Monte Carlo Localization  (AMCL) algorithm, which is a variant of MCL, that uses Kullback-Leibler divergence (KDL)-sampling to adapt the size of the particle set over time. 
+
+\subsection{Practical Considerations}
+
+Table \ref{tab:comp} summarizes and compare the localization algorithms discussed in Sec. \ref{sub:kfl} and \ref{sub:mcl}. While EKF and UKF are improvements over KF, they do come with limiting assumptions, and usage of considerable computational resources. On the other hand MCL and its variants can be used to represent multimodal distributions, and provide the ability to allocate proper computational resources.    
+
+\begin{table}[h]
+\caption{Comparison of EKF, UKF and MCL implementations}
+\label{tab:comp}
+\begin{center}
+\begin{tabular}{|l||l|l|}
+\hline
+& EKF/UKF & MCL\\
+\hline
+Measurement & landmarks & row measurements\\
+Measurement noise  & Gaussian & any\\
+Posterior & Gaussian & particles\\
+Efficiency (memory) & ++ &+\\
+Efficiency (time) & ++ & +\\
+Ease of implementation & + & ++\\
+Resolution & ++ & +\\
+Robustness & - & ++\\
+Global localization & no & yes\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
 
 
 
@@ -127,10 +160,10 @@ The practical systems are inherently non-linear, and the two common filters used
 
 
 %example for numbered list
-\begin{enumerate}
-\item example
-
-\end{enumerate}
+%\begin{enumerate}
+%\item example
+%
+%\end{enumerate}
 
 \section{Data Acquisition}
 This section should discuss the data set. Items to include are the number of images, size of the images, the types of images (RGB, Grayscale, etc.), how these images were collected (including the method). Providing this information is critical if anyone would like to replicate your results. After all, the intent of reports such as these are to convey information and build upon ideas so you want to ensure others can validate your process.
