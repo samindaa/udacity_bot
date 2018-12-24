@@ -101,9 +101,4 @@
         <material>Gazebo/Green</material>
     </gazebo>
 
-    <gazebo reference="camera">
-        <material>Gazebo/Red</material>
-    </gazebo>
-
-
 </robot>
