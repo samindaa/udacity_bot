@@ -25,7 +25,7 @@
     </joint>
 
     <link name='chassis'>
-        <pose>0 0 0.1 0 0 0</pose>
+        <pose>0 0 0.025 0 0 0</pose>
 
         <inertial>
             <mass value="5.0"/>
@@ -219,7 +219,7 @@
     </link>
 
     <joint type="continuous" name="right_front">
-        <origin xyz="0.15 -0.13 0" rpy="0 0 0"/>
+        <origin xyz="0.10 -0.13 0" rpy="0 0 0"/>
         <child link="right_front_wheel"/>
         <parent link="chassis"/>
         <axis xyz="0 1 0" rpy="0 0 0" use_parent_model_frame="true"/>
@@ -228,7 +228,7 @@
     </joint>
 
     <joint type="continuous" name="right_rear">
-        <origin xyz="-0.15 -0.13 0" rpy="0 0 0"/>
+        <origin xyz="-0.10 -0.13 0" rpy="0 0 0"/>
         <child link="right_rear_wheel"/>
         <parent link="chassis"/>
         <axis xyz="0 1 0" rpy="0 0 0" use_parent_model_frame="true"/>
@@ -237,7 +237,7 @@
     </joint>
 
     <joint type="continuous" name="left_front">
-        <origin xyz="0.15 0.13 0" rpy="0 0 0"/>
+        <origin xyz="0.10 0.13 0" rpy="0 0 0"/>
         <child link="left_front_wheel"/>
         <parent link="chassis"/>
         <axis xyz="0 1 0" rpy="0 0 0" use_parent_model_frame="true"/>
@@ -246,7 +246,7 @@
     </joint>
 
     <joint type="continuous" name="left_rear">
-        <origin xyz="-0.15 0.13 0" rpy="0 0 0"/>
+        <origin xyz="-0.10 0.13 0" rpy="0 0 0"/>
         <child link="left_rear_wheel"/>
         <parent link="chassis"/>
         <axis xyz="0 1 0" rpy="0 0 0" use_parent_model_frame="true"/>

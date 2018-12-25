@@ -9,6 +9,7 @@
 \usepackage[pdftex]{graphicx}    
 \usepackage{cite}
 \usepackage[inline]{enumitem}
+\usepackage{hyperref}
 \usepackage{algorithmic}
 \usepackage{algorithm}
 \hyphenation{op-tical net-works semi-conduc-tor}
@@ -26,7 +27,7 @@
 
 \begin{abstract}
 
-Mobile robot localization estimates the robot pose relative to a given map of the environment. This project empirically evaluates Adaptive Monte Carlo Localization algorithm using Gazebo simulator and Rviz visualizer. Using ROS framework, a baseline and custom two-wheeled mobile robot platforms with senors have been developed. The robots have used ROS amcl and navigation stack packages for localization and path planning. By tuning amcl and planner parameters, the robots have been localized on the map and successfully navigated to predefined target locations. 
+Mobile robot localization estimates the robot pose relative to a given map of the environment. This project empirically evaluates the Adaptive Monte Carlo Localization algorithm using Gazebo simulator and Rviz visualizer. Using ROS framework, a baseline two- and custom four-wheeled mobile robot platforms with senors have been developed. The robots have used ROS amcl and navigation stack packages for global localization and path planning. By tuning the amcl and planner parameters, the robots have been localized on the map and successfully navigated to predefined target locations. 
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -121,7 +122,7 @@ This project uses Adaptive Monte Carlo Localization  (AMCL) algorithm, which is 
 
 \subsection{Practical Considerations}
 
-Table \ref{tab:comp} summarizes and compare the localization algorithms discussed in Sec. \ref{sub:kfl} and \ref{sub:mcl}. While EKF and UKF are improvements over KF, they do come with limiting assumptions, and usage of considerable computational resources. On the other hand MCL and its variants can be used to represent multimodal distributions, and provide the ability to allocate proper computational resources.    
+Table \ref{tab:comp} summarizes and compares the localization algorithms discussed in Sec. \ref{sub:kfl} and \ref{sub:mcl}. While EKF and UKF are improvements over KF, they do come with limiting assumptions, and usage of considerable computational resources. On the other hand MCL and its variants can be used to represent multimodal distributions, and provide the ability to allocate proper computational resources.    
 
 \begin{table}[h]
 \caption{Comparison of EKF, UKF and MCL implementations}
@@ -165,10 +166,37 @@ Global localization & no & yes\\
 %
 %\end{enumerate}
 
-\section{Data Acquisition}
-This section should discuss the data set. Items to include are the number of images, size of the images, the types of images (RGB, Grayscale, etc.), how these images were collected (including the method). Providing this information is critical if anyone would like to replicate your results. After all, the intent of reports such as these are to convey information and build upon ideas so you want to ensure others can validate your process.
-Justifying why you gathered data in this way is a helpful point, but sometimes this may be omitted here if the problem has been stated clearly in the introduction.
-It is a great idea here to have at least one or two images showing what your data looks like for the reader to visualize.
+\section{Robot Simulation}
+
+Robot Operating System (ROS) provides a set of tools and libraries to develop robot applications \cite{288}. Using ROS constructs, two mobile robots have been developed.  Rviz has been use for visualization, and Gazebo has been used as the simulator. 
+
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{misc/overview_tf_small.png}
+      \caption{amcl and navigation stack setup.}
+      \label{fig:nav_stack}
+\end{figure}
+
+amcl\footnote{\url{http://wiki.ros.org/amcl}} package and navigation stack \footnote{\url{http://wiki.ros.org/navigation/Tutorials/RobotSetup}} have been installed in a catkin workspace and setup according to Fig. \ref{fig:nav_stack}. The simulation and parameter tuning were conducted on a Udacity virtual machine.
+
+\subsection{Udacity Bot}
+
+The baseline mobile robot, Udacity Bot, was developed using Xacro\footnote{\url{http://wiki.ros.org/xacro}} and Gazebo\footnote{\url{http://gazebosim.org/tutorials/?tut=ros_urdf}} definitions. The robot is two-wheeled robot equipped with a differential drive, Hokuyo laser scanner\footnote{\url{http://gazebosim.org/tutorials?tut=ros_gzplugins}}, and a camera.
+
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{misc/udacity_bot.pdf}
+      \caption{Structure of Udacity Bot.}
+      \label{fig:udacity_bot}
+\end{figure}
+
+
+
+
+%\section{Data Acquisition}
+%This section should discuss the data set. Items to include are the number of images, size of the images, the types of images (RGB, Grayscale, etc.), how these images were collected (including the method). Providing this information is critical if anyone would like to replicate your results. After all, the intent of reports such as these are to convey information and build upon ideas so you want to ensure others can validate your process.
+%Justifying why you gathered data in this way is a helpful point, but sometimes this may be omitted here if the problem has been stated clearly in the introduction.
+%It is a great idea here to have at least one or two images showing what your data looks like for the reader to visualize.
 
 \section{Results}
 This is typically the hardest part of the report for many. You want to convey your results in an unbiased fashion. If you results are good, you can objectively note this. Similarly, you may do this if they are bad as well. You do not want to justify your results here with discussion; this is a topic for the next session. 
