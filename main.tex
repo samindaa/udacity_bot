@@ -52,7 +52,14 @@ The third dimension addresses the ability of the localization algorithms to cont
 
 Finally, last dimension involved the number of robots involved: \begin{enumerate*} \item \textit{single-robot localization}, all sensor and motion information is collected from a single robot platform, and \item \textit{multi-robot localization}, information from other robots in a team of robots are used to solve the localization problem. \end{enumerate*}
 
-This project is focused on solving the global localization problem on a static environment, using a passive module, in a single-robot mobile platform. This has been implemented in simulation via ROS \cite{288} packages to illustrate navigation tasks (Fig. XX).  
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{misc/intro.pdf}
+      \caption{Mobile two- and four-wheeled robots.}
+      \label{fig:intro}
+\end{figure}
+
+This project is focused on solving the global localization problem on a static environment, using a passive module, in a single-robot mobile platform. This has been implemented in simulation via ROS \cite{288} packages to illustrate navigation tasks (Fig. \ref{fig:intro}).  
 
 
 %\IEEEPARstart{T}{he} introduction should provide some material regarding the history of the problem, why it is important and what is intended to be achieved. If there exists any previous attempts to solve this problem, this is a great place to note these while conveying the differences in your approach (if any). The intent is to provide enough information for the reader to understand why this problem is interesting and setting up the conversation for the solution you have provided
@@ -181,7 +188,7 @@ amcl\footnote{\url{http://wiki.ros.org/amcl}} package and navigation stack \foot
 
 \subsection{Udacity Bot}
 
-The baseline mobile robot, Udacity Bot, was developed using Xacro\footnote{\url{http://wiki.ros.org/xacro}} and Gazebo\footnote{\url{http://gazebosim.org/tutorials/?tut=ros_urdf}} definitions. The robot is two-wheeled robot equipped with a differential drive, Hokuyo laser scanner\footnote{\url{http://gazebosim.org/tutorials?tut=ros_gzplugins}}, and a camera.
+The baseline mobile robot, Udacity Bot, is developed using Xacro\footnote{\url{http://wiki.ros.org/xacro}} and Gazebo\footnote{\url{http://gazebosim.org/tutorials/?tut=ros_urdf}} definitions. The robot is two-wheeled robot equipped with a differential drive, Hokuyo laser scanner\footnote{\url{http://gazebosim.org/tutorials?tut=ros_gzplugins}}, and a camera. The structure of the robot is show in Fig. \ref{fig:udacity_bot}. The chassis is a 0.4, 0.2, 0.1 box, while the wheels are cylinder with radius 0.1 and length 0.05.  A differential drive has been attached to the left and right wheels, and configured via Gazebo file. 
 
 \begin{figure}[thpb]
       \centering
