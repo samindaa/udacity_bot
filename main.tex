@@ -50,16 +50,16 @@ The second dimension addresses the nature of the environment: \begin{enumerate*}
 
 The third dimension addresses the ability of the localization algorithms to control the motion of the robot. There are two modes: \begin{enumerate*} \item \textit{passive localization}, where the localization module only observes the sensor and motion readings, and the robot is controlled by another set of modules, and \item \textit{active localization}, controls the robot to minimize the localization error.  \end{enumerate*} 
 
-Finally, last dimension involved the number of robots involved: \begin{enumerate*} \item \textit{single-robot localization}, all sensor and motion information is collected from a single robot platform, and \item \textit{multi-robot localization}, information from other robots in a team of robots are used to solve the localization problem. \end{enumerate*}
-
 \begin{figure}[thpb]
       \centering
-      \includegraphics[width=\linewidth]{misc/intro.pdf}
-      \caption{Mobile two- and four-wheeled robots.}
-      \label{fig:intro}
+      \includegraphics[width=\linewidth]{misc/map_w.png}
+      \caption{Jackal race static map of the environment.}
+      \label{fig:map}
 \end{figure}
 
-This project is focused on solving the global localization problem on a static environment, using a passive module, in a single-robot mobile platform. This has been implemented in simulation via ROS \cite{288} packages to illustrate navigation tasks (Fig. \ref{fig:intro}).  
+Finally, last dimension involved the number of robots involved: \begin{enumerate*} \item \textit{single-robot localization}, all sensor and motion information is collected from a single robot platform, and \item \textit{multi-robot localization}, information from other robots in a team of robots are used to solve the localization problem. \end{enumerate*}
+
+This project is focused on solving the global localization problem on a static environment, using a passive module, in a single-robot mobile platform. This has been implemented in simulation via ROS \cite{288} packages to illustrate navigation tasks (Fig. \ref{fig:map}).  
 
 
 %\IEEEPARstart{T}{he} introduction should provide some material regarding the history of the problem, why it is important and what is intended to be achieved. If there exists any previous attempts to solve this problem, this is a great place to note these while conveying the differences in your approach (if any). The intent is to provide enough information for the reader to understand why this problem is interesting and setting up the conversation for the solution you have provided
@@ -187,8 +187,9 @@ Robot Operating System (ROS) provides a set of tools and libraries to develop ro
 amcl\footnote{\url{http://wiki.ros.org/amcl}} package and navigation stack \footnote{\url{http://wiki.ros.org/navigation/Tutorials/RobotSetup}} have been installed in a catkin workspace and setup according to Fig. \ref{fig:nav_stack}. The simulation and parameter tuning were conducted on a Udacity virtual machine.
 
 \subsection{Udacity Bot}
+\label{subsec:udacity_bot}
 
-The baseline mobile robot, Udacity Bot, is developed using Xacro\footnote{\url{http://wiki.ros.org/xacro}} and Gazebo\footnote{\url{http://gazebosim.org/tutorials/?tut=ros_urdf}} definitions. The robot is two-wheeled robot equipped with a differential drive, Hokuyo laser scanner\footnote{\url{http://gazebosim.org/tutorials?tut=ros_gzplugins}}, and a camera. The structure of the robot is show in Fig. \ref{fig:udacity_bot}. The chassis is a 0.4, 0.2, 0.1 box, while the wheels are cylinder with radius 0.1 and length 0.05.  A differential drive has been attached to the left and right wheels, and configured via Gazebo file. 
+The baseline mobile robot, Udacity Bot, is developed using Xacro\footnote{\url{http://wiki.ros.org/xacro}} and Gazebo\footnote{\url{http://gazebosim.org/tutorials/?tut=ros_urdf}} definitions. The robot is constructed  with two-wheels, a Hokuyo laser scanner\footnote{\url{http://gazebosim.org/tutorials?tut=ros_gzplugins}}, and a camera attached a chassis. The structure of the robot is show in Fig. \ref{fig:udacity_bot}, and it visual appearance is given in Fig. \ref{fig:ub}  . The chassis is a 0.4, 0.2, 0.1 box, while the wheels are cylinders with radius 0.1 and length 0.05.  A differential drive has been attached to the left and right wheels, and configured via a Gazebo plugin. 
 
 \begin{figure}[thpb]
       \centering
@@ -197,8 +198,34 @@ The baseline mobile robot, Udacity Bot, is developed using Xacro\footnote{\url{h
       \label{fig:udacity_bot}
 \end{figure}
 
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{misc/ub_w.png}
+      \caption{Visual appearance of Udacity Bot.}
+      \label{fig:ub}
+\end{figure}
 
+\subsection{Custom Bot}
 
+The custom mobile robot, named \textit{Saminda Bot}, is a four-wheeled robot. The chassis is a box 0.4, 0.2, 0.05, while the wheels are cylinders with radius 0.055 and length 0.0375. Similar to Sec. \ref{subsec:udacity_bot}, the robot is equipped with a Hokuyo laser scanner and a camera. A Skid Steering Drive has been attached to front/back left/right wheels and configured via Gazebo. Fig. \ref{fig:saminda_bot} shows the structure of Saminda Bot, and the visual appearance is given in Fig.  \ref{fig:sb}.
+
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{misc/saminda_bot.pdf}
+      \caption{Structure of Saminda Bot.}
+      \label{fig:saminda_bot}
+\end{figure}
+
+\begin{figure}[thpb]
+      \centering
+      \includegraphics[width=\linewidth]{misc/sb_w.png}
+      \caption{Visual appearance of Saminda Bot.}
+      \label{fig:sb}
+\end{figure}
+
+\subsection{ROS Packages}
+
+TODO
 
 %\section{Data Acquisition}
 %This section should discuss the data set. Items to include are the number of images, size of the images, the types of images (RGB, Grayscale, etc.), how these images were collected (including the method). Providing this information is critical if anyone would like to replicate your results. After all, the intent of reports such as these are to convey information and build upon ideas so you want to ensure others can validate your process.
