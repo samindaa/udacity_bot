@@ -62,10 +62,6 @@ Finally, last dimension involved the number of robots involved: \begin{enumerate
 This project is focused on solving the global localization problem on a static environment, using a passive module, in a single-robot mobile platform. This has been implemented in simulation via ROS \cite{288} packages to illustrate navigation tasks (Fig. \ref{fig:map}).  
 
 
-%\IEEEPARstart{T}{he} introduction should provide some material regarding the history of the problem, why it is important and what is intended to be achieved. If there exists any previous attempts to solve this problem, this is a great place to note these while conveying the differences in your approach (if any). The intent is to provide enough information for the reader to understand why this problem is interesting and setting up the conversation for the solution you have provided
-%Use this space to introduce your robotic inference idea and how you wish to apply it. 
-%If you have any papers / sites you have referenced for your idea, please make sure to cite them.
-
 %example for inserting image
 %\begin{figure}[thpb]
 %      \centering
@@ -156,8 +152,6 @@ Global localization & no & yes\\
 
 
 
-%At this stage, you should begin diving into the technical details of your approach by explaining to the reader how parameters were defined, what type of network was chosen, and the reasons these items were performed. This should be factual and authoritative, meaning you should not use language such as “I think this will work” or “Maybe a network with this architecture is better..”. Instead, focus on items similar to, ”A 3-layer network architecture was chosen with X, Y, and Z parameters” 
-%Explain why you chose the network you did for the supplied data set and then why you chose the network used for your robotic inference project. \cite{lamport1994latex}
 %
 %%example for Bullet point list
 %
@@ -207,7 +201,7 @@ The baseline mobile robot, Udacity Bot (UB), is developed using Xacro\footnote{\
 
 \subsection{Custom Robot Model}
 
-The custom mobile robot, named Saminda Bot (SB), is a four-wheeled robot. The chassis is a box 0.4, 0.2, 0.05, while the wheels are cylinders with radius 0.055 and length 0.0375. Similar to Sec. \ref{subsec:udacity_bot}, the robot is equipped with a Hokuyo laser scanner and a camera. A Skid Steering Drive has been attached to front/back left/right wheels and configured via Gazebo. Fig. \ref{fig:saminda_bot} shows the structure of Saminda Bot, and the visual appearance is given in Fig.  \ref{fig:sb}.
+The custom mobile robot, named Saminda Bot (SB), is a four-wheeled robot. The chassis is a box 0.2, 0.3, 0.1, while the wheels are cylinders with radius 0.05 and length 0.05. Similar to Sec. \ref{subsec:udacity_bot}, the robot is equipped with a Hokuyo laser scanner and a camera. The moment of inertia for each object shape has been calculated explicitly. A Skid Steering Drive has been attached to front/back left/right wheels and configured via Gazebo. Fig. \ref{fig:saminda_bot} shows the structure of Saminda Bot, and the visual appearance is given in Fig.  \ref{fig:sb}.
 
 \begin{figure}[thpb]
       \centering
@@ -225,25 +219,96 @@ The custom mobile robot, named Saminda Bot (SB), is a four-wheeled robot. The ch
 
 \subsection{ROS Packages}
 
-TODO
+The robots uses amcl package and ROS navigation stack to localize, plan a path, and move to the target pose.  In order to obtain successful robot behaviors, the parameters for the amcl, global planner, local planner, global costmap, and local costmap have been changed (Fig. \ref{fig:nav_stack}).   Both robots have used the same set of parameters to configure amcl (Table. \ref{tab:amcl_loc}).  The navigation stack parameters have been configured to match the characteristics of each robot. This has been the most time consuming part of the project, and the ROS tool \textit{rqt\_reconfigure} has been used extensively to view all parameters and configure them in real-time without restarting the simulation. The parameters for local planner and costmap common is given in Table \ref{tab:planner}. The global and local costmap parameters have not been changed.
 
-%\section{Data Acquisition}
-%This section should discuss the data set. Items to include are the number of images, size of the images, the types of images (RGB, Grayscale, etc.), how these images were collected (including the method). Providing this information is critical if anyone would like to replicate your results. After all, the intent of reports such as these are to convey information and build upon ideas so you want to ensure others can validate your process.
-%Justifying why you gathered data in this way is a helpful point, but sometimes this may be omitted here if the problem has been stated clearly in the introduction.
-%It is a great idea here to have at least one or two images showing what your data looks like for the reader to visualize.
+\begin{table}[h]
+\caption{AMCL parameters for both the UB and SB robots.}
+\label{tab:amcl_loc}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+kld\_err & 0.05\\
+kld\_z & 0.99\\
+laser\_lambda\_short & 0.1 \\
+laser\_likelihood\_max\_dist & 2.0\\
+laser\_max\_beams & 60 \\
+laser\_model\_type &  likelihood\_field\\
+laser\_sigma\_hit & 0.2\\
+laser\_z\_hit & 0.95\\
+laser\_z\_short & 0.1 \\
+laser\_z\_max & 0.05 \\
+laser\_z\_rand & 0.5\\
+max\_particles & 200\\
+min\_particles & 20\\
+odom\_alpha1 & 0.05\\
+odom\_alpha2& 0.05\\
+odom\_alpha3& 0.05\\
+odom\_alpha4& 0.05\\
+odom\_alpha5& 0.1\\
+update\_min\_a & 0.1\\
+update\_min\_d & 0.1 \\
+initial\_pose\_x & 0\\
+initial\_pose\_y & 0\\
+initial\_pose\_a & 0\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[h]
+\caption{Navigation stack parameters for the UB and SB robots.}
+\label{tab:planner}
+\begin{center}
+\begin{tabular}{|l||l|l|}
+\hline
+Local Planner Parameters & UB & SB\\
+\hline
+yaw\_goal\_tolerance &  0.05& 0.05\\
+xy\_goal\_tolerance &  0.1& 0.1\\
+pdist\_scale &  0.5& 0.5\\
+gdist\_scale &  1.0& 1.0\\
+max\_vel\_x &  0.5& 0.5\\
+min\_vel\_x &  0.1& 0.1\\
+max\_vel\_theta & 2.0 & 0.45\\
+min\_vel\_theta &  -2.0& -0.45\\
+acc\_lim\_theta &  5.0& 0.45\\
+acc\_lim\_x & 2.0 & 0.25\\
+acc\_lim\_y &  2.0& 0.25\\
+min\_in\_place\_vel\_theta & 0.4 & 0.45\\
+controller\_frequency &  10& 10\\
+\hline
+Costmap Common Parameters && \\
+\hline
+obstacle\_range  & 5.0 & 4.0 \\
+raytrace\_range & 8.0 & 6.0\\
+transform\_tolerance & 0.2 & 0.2\\
+robot\_radius &  0.25& -\\
+footprint &  - & [-0.2,-0.2],[-0.2,0.2],\\  
+ &  &  [0.2, 0.2], [0.2,-0.2]\\
+inflation\_radius & 0.3 & 0.2\\  
+  &  & \\              
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
 
 \section{Results}
-This is typically the hardest part of the report for many. You want to convey your results in an unbiased fashion. If you results are good, you can objectively note this. Similarly, you may do this if they are bad as well. You do not want to justify your results here with discussion; this is a topic for the next session. 
-Present the results of your robotics project model and the model you used for the supplied data with the appropriate accuracy and inference time
-For demonstrating your results, it is incredibly useful to have some charts, tables, and/or graphs for the reader to review. This makes ingesting the information quicker and easier.
+
+Both UB and SB robots have been localized and reach the benchmark target location. The two robots have different  physical characteristics, and the navigation stack has been configured such that both robots complete the navigation task. The UB robot is more responsive and reach the target pose with XX minutes. The SB robot has been configured to move conservatively than UB robot (Table \ref{tab:planner}). It has been observed that with the skid drive, when the robots turns faster, the amcl  injects particles into free space, and we have control this behavior with slower motion.     
+
+%This is typically the hardest part of the report for many. You want to convey your results in an unbiased fashion. If you results are good, you can objectively note this. Similarly, you may do this if they are bad as well. You do not want to justify your results here with discussion; this is a topic for the next session. 
+%Present the results of your robotics project model and the model you used for the supplied data with the appropriate accuracy and inference time
+%For demonstrating your results, it is incredibly useful to have some charts, tables, and/or graphs for the reader to review. This makes ingesting the information quicker and easier.
 
 \section{Discussion}
-This is the only section of the report where you may include your opinion. However, make sure your opinion is based on facts. If your results are poor, make mention of what may be the underlying issues. If the results are good, why do you think this is the case? Again, avoid writing in the first person (i.e. Do not use words like “I” or “me”). If you really find yourself struggling to avoid the word “I” or “me”; sometimes, this can be avoid with the use of the word “one”. As an example: instead of : “I think the accuracy on my dataset is low because the images are too small to show the necessary detail” try: “one may believe the accuracy on the dataset is low because the images are too small to show the necessary detail”. They say the same thing, but the second avoids the first person. 
-Reflect on which is more important, inference time or accuracy, in regards to your robotic inference project.
+%This is the only section of the report where you may include your opinion. However, make sure your opinion is based on facts. If your results are poor, make mention of what may be the underlying issues. If the results are good, why do you think this is the case? Again, avoid writing in the first person (i.e. Do not use words like “I” or “me”). If you really find yourself struggling to avoid the word “I” or “me”; sometimes, this can be avoid with the use of the word “one”. As an example: instead of : “I think the accuracy on my dataset is low because the images are too small to show the necessary detail” try: “one may believe the accuracy on the dataset is low because the images are too small to show the necessary detail”. They say the same thing, but the second avoids the first person. 
+%Reflect on which is more important, inference time or accuracy, in regards to your robotic inference project.
 
 \section{Conclusion / Future work}
-This section is intended to summarize your report. Your summary should include a recap of the results, did this project achieve what you attempted, and is this a commercially viable product? 
-For Future work,address areas of work that you may not have addressed in your report as possible next steps. For future work, this could be due to time constraints, lack of currently developed methods / technology, and areas of application outside of your current implementation. Again, avoid the use of the first-person.
+%This section is intended to summarize your report. Your summary should include a recap of the results, did this project achieve what you attempted, and is this a commercially viable product? 
+%For Future work,address areas of work that you may not have addressed in your report as possible next steps. For future work, this could be due to time constraints, lack of currently developed methods / technology, and areas of application outside of your current implementation. Again, avoid the use of the first-person.
 
 \bibliography{bib}
 \bibliographystyle{ieeetr}
