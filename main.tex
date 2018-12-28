@@ -9,6 +9,7 @@
 \usepackage[pdftex]{graphicx}    
 \usepackage{cite}
 \usepackage[inline]{enumitem}
+\usepackage{subfigure}
 \usepackage{hyperref}
 \usepackage{algorithmic}
 \usepackage{algorithm}
@@ -194,7 +195,7 @@ The baseline mobile robot, Udacity Bot (UB), is developed using Xacro\footnote{\
 
 \begin{figure}[thpb]
       \centering
-      \includegraphics[width=\linewidth]{misc/ub_w.png}
+      \includegraphics[width=\linewidth]{misc/ub_w.jpeg}
       \caption{Visual appearance of Udacity Bot.}
       \label{fig:ub}
 \end{figure}
@@ -212,7 +213,7 @@ The custom mobile robot, named Saminda Bot (SB), is a four-wheeled robot. The ch
 
 \begin{figure}[thpb]
       \centering
-      \includegraphics[width=\linewidth]{misc/sb_w.png}
+      \includegraphics[width=\linewidth]{misc/sb_w.jpeg}
       \caption{Visual appearance of Saminda Bot.}
       \label{fig:sb}
 \end{figure}
@@ -296,7 +297,97 @@ inflation\_radius & 0.3 & 0.2\\
 
 \section{Results}
 
-Both UB and SB robots have been localized and reach the benchmark target location. The two robots have different  physical characteristics, and the navigation stack has been configured such that both robots complete the navigation task. The UB robot is more responsive and reach the target pose with XX minutes. The SB robot has been configured to move conservatively than UB robot (Table \ref{tab:planner}). It has been observed that with the skid drive, when the robots turns faster, the amcl  injects particles into free space, and we have control this behavior with slower motion.     
+Both the UB and SB robots have been localized and reach the benchmark target location. The two robots have different  physical characteristics, and the navigation stack has been configured such that both robots complete the navigation tasks. The UB robot is more responsive and reach the target pose within an average of 75 seconds, while the SB robots has taken on average 158 seconds. Figure \ref{fig:time_nav} shows sample traces of the completion of the navigation tasks. The SB robot has been configured to move conservatively than UB robot (Table \ref{tab:planner}). It has been observed that with the skid drive, if the robot turns faster, the amcl  injects particles into free space, and it has been controlled with slower motion. Figures \ref{fig:ub_motion} and \ref{fig:sb_motion} show the initial pose, three intermediate poses, and the final pose for the UB  and SB mobile robots.    
+
+\begin{figure}
+\centering
+    \subfigure[Initial pose]
+    {
+        \includegraphics[width=0.6\linewidth]{misc/ub1}
+        \label{fig:ub1}
+    }
+    \\
+    \subfigure[Robot in motion (1)]
+    {
+        \includegraphics[width=0.6\linewidth]{misc/ub2}
+        \label{fig:ub2}
+    }
+    \\
+    \subfigure[Robot in motion (2)]
+    {
+        \includegraphics[width=0.6\linewidth]{misc/ub3}
+        \label{fig:ub3}
+    }
+    \\
+    \subfigure[Robot in motion (3)]
+    {
+        \includegraphics[width=0.6\linewidth]{misc/ub4}
+        \label{fig:ub4}
+    }
+    \\
+    \subfigure[Final pose]
+    {
+        \includegraphics[width=0.6\linewidth]{misc/ub5}
+        \label{fig:ub5}
+    }
+    \caption{Robot motion for the UB robot.}
+    \label{fig:ub_motion}
+\end{figure}
+
+
+\begin{figure}
+\centering
+    \subfigure[Initial pose]
+    {
+        \includegraphics[width=0.6\linewidth]{misc/sb1}
+        \label{fig:sb1}
+    }
+    \\
+    \subfigure[Robot in motion (1)]
+    {
+        \includegraphics[width=0.6\linewidth]{misc/sb2}
+        \label{fig:sb2}
+    }
+    \\
+    \subfigure[Robot in motion (2)]
+    {
+        \includegraphics[width=0.6\linewidth]{misc/sb3}
+        \label{fig:sb3}
+    }
+    \\
+    \subfigure[Robot in motion (3)]
+    {
+        \includegraphics[width=0.6\linewidth]{misc/sb4}
+        \label{fig:sb4}
+    }
+    \\
+    \subfigure[Final pose]
+    {
+        \includegraphics[width=0.6\linewidth]{misc/sb5}
+        \label{fig:sb5}
+    }
+    \caption{Robot motion for the SB robot.}
+    \label{fig:sb_motion}
+\end{figure}
+
+\begin{figure}
+\centering
+    \subfigure[A time trace for the UB navigation task]
+    {
+        \includegraphics[width=\linewidth]{misc/ub_t1}
+        \label{fig:ub1}
+    }
+    \\
+    \subfigure[A time trace for the SB navigation task]
+    {
+        \includegraphics[width=\linewidth]{misc/sb_t1}
+        \label{fig:ub2}
+    }   
+    \caption{Time traces of navigation task.}
+    \label{fig:time_nav}
+\end{figure}
+
+
 
 %This is typically the hardest part of the report for many. You want to convey your results in an unbiased fashion. If you results are good, you can objectively note this. Similarly, you may do this if they are bad as well. You do not want to justify your results here with discussion; this is a topic for the next session. 
 %Present the results of your robotics project model and the model you used for the supplied data with the appropriate accuracy and inference time
