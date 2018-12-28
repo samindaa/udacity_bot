@@ -6,5 +6,8 @@
 
   <!-- AMCL Launch -->
   <include file="$(find udacity_bot)/launch/amcl.launch"/>
+  
+  <!-- Navigation Launch -->
+  <node pkg="udacity_bot" type="navigation_goal" name="navigation_goal" output="screen"/>
 
 </launch>
