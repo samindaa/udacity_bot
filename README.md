@@ -3,11 +3,7 @@
 
 ### Introduction
 
-Mobile robot localization estimates the robot pose relative to a given map of the environment. 
-This project empirically evaluates the Adaptive Monte Carlo Localization algorithm using Gazebo simulator and RViz visualizer. 
-Using ROS framework, a baseline two- and custom four-wheeled mobile robot platforms with senors have been developed. 
-The robots have used ROS amcl and navigation stack packages for global localization and path planning. 
-By tuning the amcl and planner parameters, the robots have been localized on the map and successfully navigated to predefined target locations. 
+Mobile robot localization estimates the robot pose relative to a given map of the environment. This project empirically evaluates the Adaptive Monte Carlo Localization (AMCL) algorithm using Gazebo simulator and RViz visualizer. Using ROS framework, a baseline two- and custom four-wheeled mobile robot platforms with senors have been developed. The robots have used ROS AMCL and navigation stack packages for global localization and path planning. By tuning the AMCL and planner parameters, the robots have been localized on the map and successfully navigated to predefined target locations. 
 Please refer to [writeup](writeup.pdf) for detail explanation.
 
 ### Installation Instructions

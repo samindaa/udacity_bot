@@ -28,7 +28,7 @@
 
 \begin{abstract}
 
-Mobile robot localization estimates the robot pose relative to a given map of the environment. This project empirically evaluates the Adaptive Monte Carlo Localization algorithm using Gazebo simulator and RViz visualizer. Using ROS framework, a baseline two- and custom four-wheeled mobile robot platforms with senors have been developed. The robots have used ROS amcl and navigation stack packages for global localization and path planning. By tuning the amcl and planner parameters, the robots have been localized on the map and successfully navigated to predefined target locations. 
+Mobile robot localization estimates the robot pose relative to a given map of the environment. This project empirically evaluates the Adaptive Monte Carlo Localization (AMCL) algorithm using Gazebo simulator and RViz visualizer. Using ROS framework, a baseline two- and custom four-wheeled mobile robot platforms with senors have been developed. The robots have used ROS AMCL and navigation stack packages for global localization and path planning. By tuning the AMCL and planner parameters, the robots have been localized on the map and successfully navigated to predefined target locations. 
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -58,9 +58,9 @@ The third dimension addresses the ability of the localization algorithms to cont
       \label{fig:map}
 \end{figure}
 
-Finally, last dimension involved the number of robots involved: \begin{enumerate*} \item \textit{single-robot localization}, all sensor and motion information is collected from a single robot platform, and \item \textit{multi-robot localization}, information from other robots in a team of robots are used to solve the localization problem. \end{enumerate*}
+Finally, fourth dimension involves the number of robots involved: \begin{enumerate*} \item \textit{single-robot localization}, all sensor and motion information is collected from a single robot platform, and \item \textit{multi-robot localization}, information from other robots in a team of robots are used to solve the localization problem. \end{enumerate*}
 
-This project is focused on solving the global localization problem on a static environment, using a passive module, in a single-robot mobile platform. This has been implemented in simulation via ROS \cite{288} packages to illustrate navigation tasks (Fig. \ref{fig:map}).  
+This project has focused on solving the global localization problem on a static environment, using a passive module, in a single-robot mobile platform. This has been implemented in simulation via ROS \cite{288} packages to illustrate navigation tasks (Fig. \ref{fig:map}).  
 
 
 %example for inserting image
@@ -175,11 +175,11 @@ Robot Operating System (ROS) provides a set of tools and libraries to develop ro
 \begin{figure}[thpb]
       \centering
       \includegraphics[width=\linewidth]{misc/overview_tf_small.png}
-      \caption{amcl and navigation stack setup.}
+      \caption{AMCL and navigation stack setup.}
       \label{fig:nav_stack}
 \end{figure}
 
-amcl\footnote{\url{http://wiki.ros.org/amcl}} package and navigation stack \footnote{\url{http://wiki.ros.org/navigation/Tutorials/RobotSetup}} have been installed in a catkin workspace and setup according to Fig. \ref{fig:nav_stack}. The simulation and parameter tuning were conducted on a Udacity virtual machine.
+AMCL\footnote{\url{http://wiki.ros.org/amcl}} package and navigation stack \footnote{\url{http://wiki.ros.org/navigation/Tutorials/RobotSetup}} have been installed in a catkin workspace and setup according to Fig. \ref{fig:nav_stack}. The simulation and parameter tuning were conducted in a Udacity virtual machine.
 
 \subsection{Udacity Bot}
 \label{subsec:udacity_bot}
@@ -220,7 +220,7 @@ The custom mobile robot, named Saminda Bot (SB), is a four-wheeled robot. The ch
 
 \subsection{ROS Packages}
 
-The robots uses amcl package and ROS navigation stack to localize, plan a path, and move to the target pose.  In order to obtain successful robot behaviors, the parameters for the amcl, global planner, local planner, global costmap, and local costmap have been changed (Fig. \ref{fig:nav_stack}).   Both robots have used the same set of parameters to configure amcl (Table. \ref{tab:amcl_loc}).  The navigation stack parameters have been configured to match the characteristics of each robot. This has been the most time consuming part of the project, and the ROS tool \textit{rqt\_reconfigure} has been used extensively to view all parameters and configure them in real-time without restarting the simulation. The parameters for local planner and costmap common is given in Table \ref{tab:planner}. The global and local costmap parameters have not been changed.
+The robots uses AMCL package and ROS navigation stack to localize, plan a path, and move to the target pose.  In order to obtain successful robot behaviors, the parameters for the AMCL, global planner, local planner, global costmap, and local costmap have been changed (Fig. \ref{fig:nav_stack}).   Both robots have used the same set of parameters to configure AMCL (Table. \ref{tab:amcl_loc}).  The navigation stack parameters have been configured to match the characteristics of each robot. This has been the most time consuming part of the project, and the ROS tool \textit{rqt\_reconfigure} has been used extensively to view all parameters and configure them in real-time without restarting the simulation. The parameters for local planner and costmap common is given in Table \ref{tab:planner}. The global and local costmap parameters have not been changed.
 
 \begin{table}[h]
 \caption{AMCL parameters for both the UB and SB robots.}
@@ -297,7 +297,7 @@ inflation\_radius & 0.3 & 0.2\\
 
 \section{Results}
 
-Both the UB and SB robots have been localized and reach the benchmark target location. The two robots have different  physical characteristics, and the navigation stack has been configured such that both robots complete the navigation tasks. The UB robot is more responsive and reach the target pose within an average of 75 seconds, while the SB robots has taken on average 158 seconds. Figure \ref{fig:time_nav} shows sample traces of the completion of the navigation tasks. The SB robot has been configured to move conservatively than UB robot (Table \ref{tab:planner}). It has been observed that with the skid drive, if the robot turns faster, the amcl  injects particles into free space, and it has been controlled with slower motion. Figures \ref{fig:ub_motion} and \ref{fig:sb_motion} show the initial pose, three intermediate poses, and the final pose for the UB  and SB mobile robots.    
+Both the UB and SB robots have been localized and reached the benchmark target location. The two robots have different  physical characteristics, and the navigation stack has been configured such that both robots complete the navigation tasks. The UB robot is more responsive and reached the target pose within an average of 75 seconds, while the SB robots has taken on average 158 seconds. Figure \ref{fig:time_nav} shows sample traces of the completion of the navigation tasks. The SB robot has been configured to move conservatively than the UB robot (Table \ref{tab:planner}). It has been observed that with the skid drive, if the robot turns faster, the AMCL  injects particles into free space, and it has been controlled with slower motion. Figures \ref{fig:ub_motion} and \ref{fig:sb_motion} show the initial pose, three intermediate poses, and the final pose for the UB  and SB mobile robots.    
 
 \begin{figure}
 \centering
@@ -391,12 +391,12 @@ Both the UB and SB robots have been localized and reach the benchmark target loc
 
 \section{Discussion}
 
-Both robots have successfully localized and completed the navigation tasks. Due to the robots physical characteristics and different drives, the steering performance have empirically shown to be significantly different.  Due to some noise of the simulation, the robots have not taken the same path to the goal, and some paths were suboptimal and have taken more time to reach the target pose. amcl has the capability to solve the kidnapped robot problem; it has been observed that the robots were able to localize and move to the target pose.   
+Both robots have successfully localized and completed the navigation tasks. Due to the robots physical characteristics and different drives, the steering performance have empirically shown to be significantly different.  Due to the simulated noise in Gazebo, the robots have not taken the same path to reach the goal, and some paths were suboptimal and have taken more time to reach the target pose. AMCL has the capability to solve the kidnapped robot problem; it has been observed that when the robots were kidnapped, they were able to localize and move to the target pose.   
 
 
 \section{Conclusion / Future work}
 
-The project evaluates the functions of the ROS navigation stack and amcl packages on two simulated mobile robots. It has been shown that the robots were successfully localized and completed the navigation tasks. All tasks have been experimented in simulation. amcl package and the navigation stack provide plethora of parameters that can be used to tune for the different robot platforms. It is also interesting  to integrate the packages on real hardware and tune for the real world constrains. This project evaluated only one scenarios introduced in Sec. \ref{sec:introduction}. It is advantageous to simulate other scenarios and use in real world robotic problems. 
+The project evaluates the functions of the ROS navigation stack and AMCL packages on two simulated mobile robots. It has been shown that the robots were successfully localized and completed the navigation tasks. All tasks have been experimented in simulation. AMCL package and the navigation stack provide plethora of parameters that can be used to tune for the different robot platforms. It is also interesting  to integrate the packages on real hardware and tune for the real world constrains. This project evaluated only one scenarios introduced in Sec. \ref{sec:introduction}. It is advantageous to simulate other scenarios and use in real world robotic problems. 
 
 %This section is intended to summarize your report. Your summary should include a recap of the results, did this project achieve what you attempted, and is this a commercially viable product? 
 %For Future work,address areas of work that you may not have addressed in your report as possible next steps. For future work, this could be due to time constraints, lack of currently developed methods / technology, and areas of application outside of your current implementation. Again, avoid the use of the first-person.
